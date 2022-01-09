@@ -1,0 +1,84 @@
+@import '../../../../styles/colors';
+@import '../../../../styles/mixinis';
+.header {
+    position: relative;
+    &--background {
+      background-color: $color-secondry;
+      height: 20vh;
+      clip-path: polygon(0 0, 100% 0, 40% 70vh, 0 100%);
+    }
+    &--text-box {
+      position: absolute;
+      width: 100%;
+      bottom: 25%;
+      &-primary {
+        background-color: $color-primary;
+        height: 10vh;
+        clip-path: polygon(0 0, 100% 0, 40% 70vh, 0 100%);
+        color: $color-white;
+        display: grid;
+        justify-content: center;
+        align-content: center;
+        @include breakpoints(mobile) {
+          font-size: 1.5rem;
+        }
+      }
+      &-logo {
+        background-color: $color-third;
+        height: 10vh;
+        clip-path: polygon(12% 0, 100% 0, 100% 70vh, 0 100%);
+        color: $color-secondry;
+        display: grid;
+        justify-content: center;
+        align-content: center;
+        @include breakpoints(mobile) {
+          font-size: 1.5rem;
+        }
+       
+      }
+    }
+    .qr-code {
+      width: 9.2rem;
+      height: 9.2rem;
+      background: white;
+      padding: 2px;
+      position: absolute;
+      z-index: 4;
+      top: 50%;
+      left: 11%;
+      @include breakpoints(mobile) {
+        display: none;
+      }
+      @include breakpoints(medium) {
+        display: none;
+      }
+      @include breakpoints(small) {
+        width: 6rem;
+        height: 6rem;
+      }
+    }
+    .fa-twitter {
+      display: grid;
+      justify-content: center;
+      align-content: center;
+      background-color: $color-primary;
+      padding: 1rem;
+      border-radius: 0.5rem;
+      margin-left: 1rem;
+      color: $color-white;
+      @include breakpoints(mobile) {
+        margin-left: 0rem;
+        padding: .4rem;
+      }
+      
+    }
+    & span {
+      margin-left: 1rem;
+      @include breakpoints(mobile) {
+        margin-left: .2rem;
+        font-size: 1.3rem;
+      }
+    }
+  }
+
+ 

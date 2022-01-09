@@ -1,0 +1,184 @@
+@import "../../../../styles/colors";
+@import "../../../../styles/mixinis";
+
+
+.container-section {
+  margin: 0 auto;
+  max-width: 50rem;
+  position: relative;
+  @include breakpoints(mobile) {
+    margin: 0 auto;
+    max-width: 34rem;
+  }
+  .add-todo-box {
+    padding: 2rem;
+    background: $color-white;
+    border-radius: 0.4rem;
+    margin-top: 5rem;
+    box-shadow: 0 4px 12px rgba($color-black, 0.08);
+    @include breakpoints(mobile) {
+      padding: 1rem;
+    }
+    input[type="text"] {
+      height: 3rem;
+      padding: 0.5rem;
+      font-size: 1.2rem;
+      box-sizing: border-box;
+      width: calc(100% - 63px);
+    }
+    :focus {
+      outline-color: transparent;
+      outline-style: none;
+    }
+  }
+  .btn-main {
+    position: absolute;
+    left: 44%;
+    top: 74%;
+    height: 5rem;
+    width: 5rem;
+    border-radius: 50%;
+    padding: 1rem;
+    margin: 0.5rem;
+    border: none;
+    background-color: $color-icon;
+    font-size: 24px;
+    cursor: pointer;
+    outline: none;
+    color: $color-white;
+    &:hover {
+      background: $color-icon-light;
+    }
+    &:active {
+      opacity: 0.8;
+    }
+
+    &:focus {
+      color: $color-white;
+      opacity: 1;
+    }
+    @include breakpoints(mobile) {
+      position: absolute;
+      left: 44%;
+      top: 89%;
+    }
+    @include breakpoints(small) {
+      position: absolute;
+      left: 44%;
+      top: 92%;
+    }
+    @include breakpoints(large) {
+      position: absolute;
+      left: 44%;
+      top: 92%;
+    }
+  }
+  .todos--list {
+    position: relative;
+  }
+  // todo list
+  .todo--item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 1.8rem;
+    padding: 2.5rem 1.5rem;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+    border-bottom: .1px solid #eee;
+    position: relative;
+    cursor: pointer;
+    @include breakpoints(mobile) {
+      padding: 2rem 0.5rem;
+    }
+    &.completed {
+      color: $color-gray-primary;
+    }
+    .check--box {
+      display: flex;
+      flex-shrink: 0;
+      border: 2px solid $color-gray-light;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      text-align: center;
+      transition: background-color 0.2s;
+
+      .fa-check {
+        font-size: 20px;
+        margin: auto;
+        color: #333;
+        //hide by default
+        opacity: 0;
+        transition: opacity 0.2s;
+      }
+    }
+    .todo--controls-box {
+      display: flex;
+      position: absolute;
+      bottom: 0px;
+      right: 0.5rem;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.2s, visibility 0.2s;
+      .todo--control-button {
+        display: flex;
+        background: #f5f7f8;
+        padding: 0.5rem 1rem;
+        margin-top: 2rem;
+        @include breakpoints(mobile) {
+          padding: 0.5rem 0.5rem;
+        }
+
+        .fa-pencil-alt {
+          font-size: 1.5rem;
+          border-top-left-radius: 0.7rem;
+          @include breakpoints(mobile) {
+            font-size: 1rem;
+          }
+        }
+        .fa-trash {
+          font-size: 1.5rem;
+          border-top-right-radius: 0.7rem;
+          @include breakpoints(mobile) {
+            font-size: 1rem;
+          }
+        }
+        &:hover {
+          background: $color-gray;
+          .fa-trash {
+            color: red;
+          }
+        }
+        &:active {
+          background: #e5e7e8;
+        }
+      }
+    }
+  }
+  .todo--item:hover .check--box {
+    background: $color-white;
+    border: 2px solid $color-icon-check;
+    .fa-check {
+      opacity: 0.5;
+      color: $color-icon-check;
+    }
+  }
+  .todo--item.completed .check--box {
+    background-color: $color-white;
+    border-color: rgb(11, 233, 170);
+
+    .fa-check {
+      opacity: 1;
+      color: $color-icon-light;
+    }
+  }
+  .todo--item:hover .todo--controls-box {
+    opacity: 1;
+    visibility: visible;
+    transition-delay: 0.4s;
+  }
+}
+.form-group {
+  text-align: center;
+}

@@ -1,0 +1,7 @@
+<div class="section">
+	<h6 style="font-weight:bold">Select a Language</h6>
+	<select (change)="changeLanguage($event.target.value)">
+    <option value="en" [selected]="lang == 'en'">English</option>
+      <option value="ar" [selected]="lang == 'ar'"> Arabic</option>
+    </select>
+</div>

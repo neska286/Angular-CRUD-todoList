@@ -1,0 +1,101 @@
+<app-header></app-header>
+<!-- <app-drop-down></app-drop-down> -->
+<section class="section">
+  <div class="container-section">
+    <div class="add-todo-box">
+      <div class="todos--list">
+        <div class="row">
+          <div class="year">
+            <div class="date--year">
+              <h1>{{ date | date: "dd" }}</h1>
+              <h3>{{ date | date: "MMM" }}</h3>
+            </div>
+            <p class="year--detail">{{ date | date: "yyyy" }}</p>
+          </div>
+          <div class="day">
+            <h2>{{ date | date: "EEEE" }}</h2>
+          </div>
+        </div>
+        <!-- todo item -->
+        <div
+          class="form-group"
+          *ngIf="(todoList | filter: searchText).length > 0; else noResults"
+        >
+          <input
+            class="form-control"
+            type="text"
+            [(ngModel)]="searchText"
+            placeholder="Search"
+          />
+        </div>
+
+        <div
+          class="todo--item"
+          *ngFor="let todo of todoList | filter: searchText; let i = index"
+          (click)="todoCompleted(todo)" 
+          [class.completed]="todo.completed"
+        >
+          <div class="todo--text">
+            {{ todo.title }}
+          </div>
+
+          <div class="check--box">
+            <i class="fas fa-check"></i>
+          </div>
+          <div class="todo--controls-box" (click)="$event.stopPropagation()">
+            <div class="todo--control-button">
+              <i
+                class="fas fa-pencil-alt"
+                (click)="openModal('custom-modal-1', todo.id)"
+              ></i>
+            </div>
+            <div
+              class="todo--control-button btn-danger"
+              (click)="deleteTodo(todo.id)"
+            >
+              <i class="fas fa-trash"></i>
+            </div>
+          </div>
+        </div>
+        <ng-template #noResults>
+          <p>No results found for "{{ searchText }}".</p>
+        </ng-template>
+      </div>
+      <button class="btn-main btn-target" (click)="toggleShow()">
+        <i class="fas fa-plus"></i>
+      </button>
+    </div>
+  </div>
+</section>
+<!--  Creat task -->
+<div class="container-section">
+  <div class="add-todo-box" *ngIf="isShown">
+    <form #form="ngForm" (ngSubmit)="createTodo(form)">
+      <h2>Add New Todo</h2>
+
+      <input
+        ngModel
+        #todoTextField="ngModel"
+        name="title"
+        minlength="3"
+        type="text"
+        class="input"
+        placeholder="Write Your todo"
+        required
+      />
+      <button type="submit" class="btn btn-add">
+        <i class="fas fa-plus"></i>
+      </button>
+      <div *ngIf="todoTextField.invalid && showValidationErrors">
+        <p class="help is-danger" *ngIf="todoTextField.errors.required">
+          Please enter the text of your todo
+        </p>
+        <p class="help is-danger" *ngIf="todoTextField.errors.minlength">
+          Todo text must be at least 2 characters
+        </p>
+      </div>
+    </form>
+  </div>
+</div>
+
+<jw-modal id="custom-modal-1" (updateModel)="onUpdateModel($event)"> </jw-modal>

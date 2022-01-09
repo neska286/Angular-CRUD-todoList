@@ -1,0 +1,40 @@
+<div class="jw-modal">
+  <div class="jw-modal-body">
+    <!-- <ng-content></ng-content> -->
+    <div class="container-section">
+      <div class="add-todo-box">
+        <div class="row">
+          <h2>UpdateTodo</h2>
+          <a (click)="closeModal('custom-modal-1')"
+            ><i class="fas fa-times"></i
+          ></a>
+        </div>
+
+        <form #form="ngForm" (ngSubmit)="updateTodo(form)">
+          <input
+            ngModel
+            #todoTextField="ngModel"
+            name="title"
+            minlength="3"
+            type="text"
+            class="input"
+            placeholder="Update Your todo"
+            required
+          />
+          <button type="submit" class="btn btn-add">
+            <i class="fas fa-plus"></i>
+          </button>
+          <div *ngIf="todoTextField.invalid && showValidationErrors">
+                  <p class="help is-danger" *ngIf="todoTextField.errors.required">
+                    Please enter the text of your edit todo
+                  </p>
+                  <p class="help is-danger" *ngIf="todoTextField.errors.minlength">
+                    Todo text must be at least 2 characters
+                  </p>
+                </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="jw-modal-background"></div>
